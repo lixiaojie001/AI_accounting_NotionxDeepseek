@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Notion集成Token和数据库ID获取指南</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d3436;
+            border-bottom: 3px solid #0984e3;
+            padding-bottom: 10px;
+        }
+        .step-card {
+            background: #f8f9fa;
+            border-left: 4px solid #74b9ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .important {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        code {
+            background: #ececec;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+        }
+        .screenshot {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .token-card, .database-card {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Notion集成Token和数据库ID获取指南</h1>
+
+        <div class="token-card">
+            <h2>第一部分：获取集成Token</h2>
+            
+            <div class="step-card">
+                <h3>步骤 1：进入集成设置</h3>
+                <p>打开 <a href="https://www.notion.so/my-integrations" target="_blank">Notion集成管理页面</a> → 点击 <strong>"+ New integration"</strong></p>
+            </div>
+
+            <div class="step-card">
+                <h3>步骤 2：创建新集成</h3>
+                <p>填写以下信息：</p>
+                <ul>
+                    <li>名称：输入你的集成名称（例如"MyBot"）</li>
+                    <li>关联工作区：选择你的工作区</li>
+                    <li>功能权限：建议全选（根据需求调整）</li>
+                </ul>
+                <img src="https://example.com/step2-screenshot.jpg" alt="集成创建界面" class="screenshot">
+            </div>
+
+            <div class="step-card">
+                <h3>步骤 3：获取Token</h3>
+                <p>创建成功后 → 在集成详情页找到 <strong>"Internal Integration Token"</strong> → 点击 <code>Show</code> 查看完整Token</p>
+                <div class="important">
+                    <strong>⚠️ 重要提示：</strong>
+                    <ul>
+                        <li>Token格式类似：secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+                        <li>务必妥善保管，不要泄露</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="database-card">
+            <h2>第二部分：获取数据库ID</h2>
+            
+            <div class="step-card">
+                <h3>步骤 1：打开目标数据库</h3>
+                <p>在Notion中打开你要使用的数据库 → 点击右上角的 <strong>•••</strong> 菜单</p>
+            </div>
+
+            <div class="step-card">
+                <h3>步骤 2：复制链接</h3>
+                <p>选择 <strong>"Copy link"</strong> → 获得类似这样的链接：<br>
+                <code>https://www.notion.so/yourworkspace/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?v=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></p>
+            </div>
+
+            <div class="step-card">
+                <h3>步骤 3：提取数据库ID</h3>
+                <p>从链接中复制 <span style="color: #d63031;">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span> 部分（32位字符）<br>
+                示例链接分解：<br>
+                <code>https://www.notion.so/yourworkspace/<span style="background: #ffeb3b;">b863e4f3ab6941b2a7d66f888a5a1234</span>?v=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></p>
+                <div class="important">
+                    <strong>💡 小技巧：</strong>
+                    <ul>
+                        <li>数据库ID总是由32个字母/数字组成</li>
+                        <li>不需要包含<code>?v=</code>后面的部分</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="important" style="background: #e3f2fd;">
+            <h3>✅ 最终检查清单</h3>
+            <ul>
+                <li>集成Token格式：以<code>secret_</code>开头的42位字符</li>
+                <li>数据库ID格式：32位的字母数字组合</li>
+                <li>确保数据库已分享给你的集成（在数据库页面点击Share → 输入你的集成名称）</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
