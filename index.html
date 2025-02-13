@@ -2,131 +2,248 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Notion集成Token和数据库ID获取指南</title>
+    <title>Notion集成（Integration）配置指南</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* 基础样式优化 */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             line-height: 1.6;
             max-width: 800px;
             margin: 20px auto;
             padding: 0 20px;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
+            color: #2c3e50;
         }
+
+        /* 容器样式优化 */
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07),
+                        0 12px 20px rgba(0, 0, 0, 0.05);
         }
+
+        /* 标题样式优化 */
         h1 {
             color: #2d3436;
             border-bottom: 3px solid #0984e3;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2em;
+            letter-spacing: -0.5px;
         }
+
+        h2 {
+            color: #2d3436;
+            margin-top: 35px;
+            font-size: 1.5em;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        /* 步骤卡片样式优化 */
         .step-card {
-            background: #f8f9fa;
-            border-left: 4px solid #74b9ff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
+            background: #f8fafc;
+            border-left: 4px solid #3498db;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 重要信息样式优化 */
         .important {
-            background: #fff3e0;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
+            background: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ffeedd;
         }
+
+        /* 代码样式优化 */
         code {
-            background: #ececec;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: 'Consolas', monospace;
+            background: #f1f5f9;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.9em;
+            color: #476582;
         }
+
+        /* 图片样式优化 */
         .screenshot {
             width: 100%;
             max-width: 600px;
-            border: 1px solid #ddd;
-            margin: 10px 0;
-        }
-        .token-card, .database-card {
-            background: #f8f9fa;
-            padding: 20px;
-            margin: 20px 0;
+            border: 1px solid #e1e4e8;
             border-radius: 8px;
+            margin: 15px 0;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .screenshot:hover {
+            transform: scale(1.01);
+        }
+
+        /* 列表样式优化 */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        /* 链接样式优化 */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        /* 卡片容器样式优化 */
+        .token-card, .database-card {
+            background: #f8fafc;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* 复选框样式优化 */
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        /* 强调文本样式 */
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔑 Notion集成Token和数据库ID获取指南</h1>
+        <h1>🔑 Notion集成（Integration）配置指南</h1>
 
+        <!-- 第一部分：创建集成（Integration） -->
         <div class="token-card">
-            <h2>第一部分：获取集成Token</h2>
+            <h2>第一部分：创建内部集成（Integration）</h2>
             
             <div class="step-card">
                 <h3>步骤 1：进入集成设置</h3>
-                <p>打开 <a href="https://www.notion.so/my-integrations" target="_blank">Notion集成管理页面</a> → 点击 <strong>"+ New integration"</strong></p>
+                <p>访问 <a href="https://www.notion.so/my-integrations" target="_blank">Notion集成页面</a> → 点击 <strong>"+ 集成（Integration）"</strong></p>
+                <img src="https://github.com/lixiaojie001/Notion_AI_accounting/blob/main/notion%E5%9B%BE%E7%89%87%E7%A4%BA%E4%BE%8B/%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8B1.jpg?raw=true" 
+                     alt="集成设置入口" 
+                     class="screenshot">
             </div>
 
             <div class="step-card">
-                <h3>步骤 2：创建新集成</h3>
-                <p>填写以下信息：</p>
+                <h3>步骤 2：配置集成信息</h3>
                 <ul>
-                    <li>名称：输入你的集成名称（例如"MyBot"）</li>
+                    <li>名称：输入集成名称（如"财务助手"）</li>
                     <li>关联工作区：选择你的工作区</li>
-                    <li>功能权限：建议全选（根据需求调整）</li>
+                    <li>类型选择：<strong>内部集成（Integration）</strong></li>
                 </ul>
-                <img src="https://example.com/step2-screenshot.jpg" alt="集成创建界面" class="screenshot">
+                <img src="https://github.com/lixiaojie001/Notion_AI_accounting/blob/main/notion%E5%9B%BE%E7%89%87%E7%A4%BA%E4%BE%8B/%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8B2.jpg?raw=true" 
+                     alt="集成类型选择" 
+                     class="screenshot">
             </div>
 
             <div class="step-card">
-                <h3>步骤 3：获取Token</h3>
-                <p>创建成功后 → 在集成详情页找到 <strong>"Internal Integration Token"</strong> → 点击 <code>Show</code> 查看完整Token</p>
+                <h3>步骤 3：获取密钥（Secret Token）</h3>
+                <p>创建成功后 → 在集成详情页找到 <strong>"内部集成密钥（Internal Integration Token）"</strong> → 点击 <code>Show</code> 查看</p>
+                <img src="https://github.com/lixiaojie001/Notion_AI_accounting/blob/main/notion%E5%9B%BE%E7%89%87%E7%A4%BA%E4%BE%8B/%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8B3.jpg?raw=true" 
+                     alt="Token展示界面" 
+                     class="screenshot">
                 <div class="important">
-                    <strong>⚠️ 重要提示：</strong>
+                    <strong>🔐 密钥安全：</strong>
                     <ul>
-                        <li>Token格式类似：secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-                        <li>务必妥善保管，不要泄露</li>
+                        <li>格式：secret_开头 + 32位字符</li>
+                        <li>Token仅显示一次，请及时保存</li>
+                        <li>如遗失需要重新生成</li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- 第二部分：数据库权限配置 -->
         <div class="database-card">
-            <h2>第二部分：获取数据库ID</h2>
+            <h2>第二部分：数据库权限配置</h2>
             
             <div class="step-card">
-                <h3>步骤 1：打开目标数据库</h3>
-                <p>在Notion中打开你要使用的数据库 → 点击右上角的 <strong>•••</strong> 菜单</p>
+                <h3>步骤 1：打开数据库设置</h3>
+                <p>在数据库页面右上角点击 <strong>•••</strong> → 选择 <strong>"添加集成（Add connections）"</strong></p>
+                <img src="https://github.com/lixiaojie001/Notion_AI_accounting/blob/main/notion%E5%9B%BE%E7%89%87%E7%A4%BA%E4%BE%8B/databaseid1.jpg?raw=true" 
+                     alt="集成连接入口" 
+                     class="screenshot">
             </div>
 
             <div class="step-card">
-                <h3>步骤 2：复制链接</h3>
-                <p>选择 <strong>"Copy link"</strong> → 获得类似这样的链接：<br>
-                <code>https://www.notion.so/yourworkspace/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?v=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></p>
-            </div>
-
-            <div class="step-card">
-                <h3>步骤 3：提取数据库ID</h3>
-                <p>从链接中复制 <span style="color: #d63031;">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span> 部分（32位字符）<br>
-                示例链接分解：<br>
-                <code>https://www.notion.so/yourworkspace/<span style="background: #ffeb3b;">b863e4f3ab6941b2a7d66f888a5a1234</span>?v=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></p>
+                <h3>步骤 2：添加集成权限</h3>
+                <p>搜索并选择你创建的集成名称 → 点击确认</p>
                 <div class="important">
-                    <strong>💡 小技巧：</strong>
+                    <strong>❗ 注意事项：</strong>
                     <ul>
-                        <li>数据库ID总是由32个字母/数字组成</li>
-                        <li>不需要包含<code>?v=</code>后面的部分</li>
+                        <li>每个需要访问的数据库都需要单独授权</li>
+                        <li>确保集成显示为"已连接"状态</li>
+                        <li>如需修改权限，可以随时在集成设置中调整</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="important" style="background: #e3f2fd;">
-            <h3>✅ 最终检查清单</h3>
+        <!-- 第三部分：获取数据库ID -->
+        <div class="database-card">
+            <h2>第三部分：获取数据库ID</h2>
+            
+            <div class="step-card">
+                <h3>步骤 1：拷贝数据库链接</h3>
+                <p>在数据库页面点击右上角 <strong>•••</strong> → 选择 <strong>"拷贝链接"</strong></p>
+            </div>
+
+            <div class="step-card">
+                <h3>步骤 2：获取数据库ID</h3>
+                <p>从复制的链接中找到32位字符串，这就是数据库ID。例如：</p>
+                <div class="important">
+                    <p>链接示例：</p>
+                    <code>https://www.notion.so/workspace/<strong>b863e4f3ab6941b2a7d66f888a5a1234</strong>?v=...</code>
+                    <p>其中加粗的32位字符串即为数据库ID</p>
+                    <strong>📝 注意事项：</strong>
+                    <ul>
+                        <li>ID长度固定为32位</li>
+                        <li>仅包含小写字母(a-f)和数字(0-9)</li>
+                        <li>不要复制问号(?)及其后面的内容</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最终确认 -->
+        <div class="important" style="background:#e3f2fd;">
+            <h3>✅ 配置验证清单</h3>
             <ul>
-                <li>集成Token格式：以<code>secret_</code>开头的42位字符</li>
-                <li>数据库ID格式：32位的字母数字组合</li>
-                <li>确保数据库已分享给你的集成（在数据库页面点击Share → 输入你的集成名称）</li>
+                <li><input type="checkbox"> 已保存Secret Token（以secret_开头）</li>
+                <li><input type="checkbox"> 已将集成添加到目标数据库</li>
+                <li><input type="checkbox"> 已正确获取32位数据库ID</li>
             </ul>
         </div>
     </div>
